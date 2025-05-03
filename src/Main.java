@@ -91,12 +91,18 @@ class User {
     public String getEmail() { return email; }
 }
 // ProductRepository.java
+//Интерфейс ProductRepository позволяет добавлять новые реализации без изменения существующего кода.
+//OCP
+// Система открыта для расширения (через новые реализации интерфейсов), но закрыта для модификации (не требует изменений существующего кода).
 interface ProductRepository {
     List<Product> findAll();
     List<Product> findByCategory(Category category);
     List<Product> findByNameContaining(String name);
     Optional<Product> findById(String id);
 }
+     //Раздельные интерфейсы ProductRepository и OrderRepository вместо одного большого ShopRepository.
+//ISP
+      //Клиенты не должны зависеть от интерфейсов, которые они не используют. Мелкие специализированные интерфейсы лучше!
 // OrderRepository.java
 interface OrderRepository {
     void save(Order order);
@@ -154,8 +160,10 @@ interface OrderRepository {
         return Optional.ofNullable(products.get(id));
     }
 }
-// InMemoryOrderRepository.java
 
+//Все реализации ProductRepository (например, InMemoryProductRepository) могут быть взаимозаменяемы без изменения корректности программы.
+//LSP
+//Подтипы могут заменять базовые типы, не нарушая работу программы.
 // InMemoryOrderRepository.java
 class InMemoryOrderRepository implements OrderRepository {
     private final Map<String, Order> orders = new HashMap<>();
