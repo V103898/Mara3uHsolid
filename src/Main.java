@@ -206,7 +206,7 @@ interface RecommendationService {
                 ProductRepository productRepository = new InMemoryProductRepository();
                 OrderRepository orderRepository = new InMemoryOrderRepository();
 
-                User user = new User("1", "Alice", "alice@example.com");
+                User user = new User("1", "ВАСЯ", "vasek@ya.ru");
 
                 // Создание нового заказа
                 List<Product> productsToOrder = productRepository.findByCategory(Category.ELECTRONICS);
